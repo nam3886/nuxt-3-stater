@@ -12,5 +12,5 @@ module.exports = {
   proseWrap: 'preserve',
   quoteProps: 'as-needed',
   useTabs: false,
-  htmlWhitespaceSensitivity: 'css',
+  htmlWhitespaceSensitivity: 'strict',
 };

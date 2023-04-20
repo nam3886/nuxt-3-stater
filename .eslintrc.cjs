@@ -87,7 +87,7 @@ module.exports = {
       { caseSensitive: true, natural: false, requiredFirst: true },
     ],
     'vue/attributes-order': 'error',
-    'vue/block-lang': ['error', { script: { lang: 'ts' }, style: { lang: 'scss' } }],
+    'vue/block-lang': ['error', { script: { lang: 'ts' }, style: { lang: ['scss', 'less'] } }],
     'vue/component-api-style': ['error', ['script-setup', 'composition']],
     'vue/component-name-in-template-casing': [
       'error',

@@ -1,12 +1,12 @@
 let intervalCheckTime: NodeJS.Timer;
 
 export function useTheme() {
-  const themeUserSetting = useCookie<ITheme>('theme');
+  const themeUserSetting = useCookie<AppTheme>('theme');
 
   const config = useRuntimeConfig();
-  const defaultSystemTheme = config.public.APP_DEFAULT_THEME as ISystemTheme;
+  const defaultSystemTheme = config.public.APP_DEFAULT_THEME as AppSystemTheme;
 
-  const systemTheme = useState<ISystemTheme>(getSystemTheme);
+  const systemTheme = useState<AppSystemTheme>(getSystemTheme);
 
   function setup() {
     themeUserSetting.value = getUserThemeSetting();
@@ -34,17 +34,17 @@ export function useTheme() {
       systemTheme.value = getRealtimeTheme();
     }
   }
-  function getRealtimeTheme(): ISystemTheme {
+  function getRealtimeTheme(): AppSystemTheme {
     const now = new Date();
     const hour = now.getHours();
     const isNight = hour >= 17 || hour <= 5;
 
     return isNight ? 'dark' : 'light';
   }
-  function getUserThemeSetting(): ITheme {
+  function getUserThemeSetting(): AppTheme {
     return themeUserSetting.value || getSystemTheme();
   }
-  function getSystemTheme(): ISystemTheme {
+  function getSystemTheme(): AppSystemTheme {
     try {
       switch (themeUserSetting.value) {
         case 'dark':

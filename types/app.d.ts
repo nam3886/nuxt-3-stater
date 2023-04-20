@@ -25,11 +25,11 @@ declare global {
   declare type ClientDateTime =
     `${number}${number}/${number}${number}/${number}${number}${number}${number} ${number}${number}:${number}${number}:${number}${number}`;
 
-  declare type ILocale = 'dark' | 'light';
+  declare type AppLocale = 'dark' | 'light';
 
-  declare type ITheme = 'dark' | 'light' | 'system' | 'realtime';
+  declare type AppTheme = 'dark' | 'light' | 'system' | 'realtime';
 
-  declare type ISystemTheme = ITheme & ('dark' | 'light');
+  declare type AppSystemTheme = AppTheme & ('dark' | 'light');
 }
 
 export {};

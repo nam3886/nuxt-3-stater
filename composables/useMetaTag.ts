@@ -6,7 +6,7 @@ interface SEOOptions {
   image?: string;
   keywords?: string;
   pageTitle?: string;
-  theme?: ISystemTheme;
+  theme?: AppSystemTheme;
   title?: string;
   url?: string;
 }
