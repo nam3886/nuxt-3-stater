@@ -1,0 +1,16 @@
+coverage
+.vscode
+.DS_Store
+dist-ssr
+*.local
+components.d.ts
+nuxt.d.ts
+dist
+.nuxt
+.output
+src-capacitor
+src-cordova
+.quasar
+node_modules
+src-ssr
+generated

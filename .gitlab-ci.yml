@@ -1,0 +1,142 @@
+stages:
+  - installation
+  - linting
+  # - testing
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cache/
+    - .yarn-cache/
+    - cache/Cypress/
+    - node_modules/
+    - ./nuxt
+    - ./output
+
+image: cypress/browsers:node16.16.0-chrome106-ff99-edge
+
+install_dependencies:
+  stage: installation
+  before_script:
+    - echo 'yarn-offline-mirror ".yarn-cache/"' >> .yarnrc
+    - echo 'yarn-offline-mirror-pruning true' >> .yarnrc
+  script:
+    # Install Cypress, then run all tests (in parallel)
+    - yarn install --frozen-lockfile
+    - yarn build:testing
+    # # check Cypress binary path and cached versions
+    # # useful to make sure we are not carrying around old versions
+    # - npx cypress cache path
+    # - npx cypress cache list
+    # - npx cypress info
+    # - npx cypress verify
+  tags:
+    - runner-local
+
+.linting:
+  stage: linting
+  before_script:
+    - yarn install --frozen-lockfile
+    - yarn build:testing
+  tags:
+    - runner-local
+
+commit-msg-linting:
+  extends:
+    - .linting
+  script:
+    - echo "$CI_COMMIT_MESSAGE" | npx commitlint
+
+code-linting:
+  extends:
+    - .linting
+  script:
+    - yarn lint:fix
+
+code-type-checking:
+  extends:
+    - .linting
+  script:
+    - yarn type-check
+
+.testing:
+  stage: testing
+  before_script:
+    - yarn install --frozen-lockfile
+    - yarn build:testing
+  tags:
+    - runner-local
+
+# unit-testing:
+#   extends:
+#     - .testing
+#   script:
+#     - yarn test:unit:coverage
+#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+#   artifacts:
+#     when: always
+#     paths:
+#       - coverage/
+#     expire_in: 1 day
+
+# e2e-testing:
+#   extends:
+#     - .testing
+#   parallel: 5
+#   script:
+#     - yarn serve --port 3030 & npx cypress run --record --browser chrome
+#   artifacts:
+#     when: always
+#     paths:
+#       - cypress/videos/**/*.mp4
+#       - cypress/screenshots/**/*.png
+#     expire_in: 1 day
+
+build-staging:
+  stage: build
+  image: docker:19
+  services:
+    - docker:dind
+  before_script:
+    - apk update
+    - apk add zip
+  script:
+    - docker build -t gptc/gptc-web . --build-arg MODE=staging
+    - docker save -o nuxt-3-stater-web-app-${CI_PIPELINE_ID}.tar gptc/gptc-web
+    - zip nuxt-3-stater-web-app-${CI_PIPELINE_ID}.zip nuxt-3-stater-web-app-${CI_PIPELINE_ID}.tar
+  artifacts:
+    paths:
+      - nuxt-3-stater-web-app-${CI_PIPELINE_ID}.zip
+  tags:
+    - runner-local
+  only:
+    - staging
+
+deploy-staging:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - chmod 700 ~/.ssh
+  script:
+    - scp -P $SSH_PORT nuxt-3-stater-web-app-${CI_PIPELINE_ID}.zip $SSH_USER@$SSH_HOST_STAG:/home/nuxt-3-stater-web-app
+    - >-
+      ssh -p $SSH_PORT $SSH_USER@$SSH_HOST_STAG
+      "cd /home/nuxt-3-stater-web-app
+      && unzip nuxt-3-stater-web-app-${CI_PIPELINE_ID}.zip
+      && cat nuxt-3-stater-web-app-${CI_PIPELINE_ID}.tar | docker load
+      && export DOMAIN_NAME=${DOMAIN_NAME}
+      && echo DOMAIN_NAME=${DOMAIN_NAME}
+      && docker-compose up -d
+      && docker image prune -f
+      && rm nuxt-3-stater-web-app-${CI_PIPELINE_ID}.*
+      && exit"
+  tags:
+    - runner-local
+  only:
+    - staging

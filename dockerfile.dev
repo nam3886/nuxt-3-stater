@@ -1,0 +1,11 @@
+FROM node:16.16.0-alpine
+WORKDIR /app
+RUN apk update && apk upgrade && apk --no-cache --virtual build-dependencies add \
+    python3 \
+    make \
+    g++
+COPY . .
+ENV HOST=0.0.0.0
+ENV NUXT_PORT=3000
+EXPOSE 3000
+ENTRYPOINT ["sh", "/app/entrypoint.sh"]

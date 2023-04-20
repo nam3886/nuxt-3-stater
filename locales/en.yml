@@ -1,0 +1,127 @@
+validation:
+  fields:
+    auth:
+      login:
+        password: password
+        user_name: user name
+      register:
+        password: password
+        password_confirmation: password confirmation
+        user_name: phone number
+      profile:
+        address: address
+        avatar: avatar
+        customer_type: customer type
+        date_of_birth: date of birth
+        email: email
+        fullname: fullName
+        gender: gender
+        identification_card: identification card
+        phone: phone
+        work_at: work at
+      deposit:
+        duyet_ky_gui: deposit approval
+        chieu_dai: height
+        chieu_rong: weight
+        city_id: city id
+        customer_id: customer id
+        dien_tich_dat: land area
+        dien_tich_su_dung: usable area
+        district_id: district id
+        do_sau_hem: alley depth
+        gia_ban: price
+        huong_bds: real estate direction
+        ky_gui: deposit
+        ky_gui_dia_chi: consignment address
+        loai_chu_quyen: sovereignty type
+        loai_hinh_bds: type of real estate
+        loai_mua_ban_bds: type of buy and sell real estate
+        ma_phuong_xa: ward code
+        ma_quan_huyen: district code
+        so_lau: number of floors
+        so_phong_ngu: number of bedrooms
+        so_phong_tam: number of bathrooms
+        so_thua: number of land plots
+        so_to: pieces of paper
+        trang_thai: status
+        ward_id: ward id
+        tien_ich: utilities
+        tien_ich_khac: other utilities
+        hinh_anh: image
+        mo_ta_tong_quan: general description
+        mo_ta_vi_tri: location description
+        tieu_de: title
+      feedback:
+        des: description
+        full_name: full name
+        is_read: is read
+        is_reply: is reply
+        phone_number: phone number
+        adviseId: id
+      forgot_password:
+        user_name: user name
+        new_password: new password
+        new_password_confirmation: new password confirmation
+        otp: otp
+        old_password: old password
+    dialog:
+      request_land:
+        gia_bds_from: real estate prices from
+        gia_bds_to: real estate prices to
+        loai_hinh_bds: type of real estate
+        loai_yc_bds: type of real estate request
+        ma_quan_huyen: district code
+        nguoi_phu_trach: person in charge
+        nguoi_phu_trach_info: person in charge information
+        note: note
+        phone: phone number
+        ten_khach_hang: customer name
+        trang_thai: status
+    land_valuation:
+      alley_width: alley width
+      area_construction_floor: area construction floor
+      area_legal: area legal
+      area_legal_length: area legal length
+      area_legal_width: area legal width
+      area_not_legal: area not legal
+      area_not_legal_length: area not legal length
+      area_not_legal_width: area not legal width
+      city_id: city id
+      contact_email: contact email
+      contact_name: contact name
+      contact_phone: contact phone
+      distance: distance
+      distance_to_street: distance to street
+      district_id: district id
+      floors_count: floors count
+      house_number: house number
+      location: location
+      number_of_land_plots: number of land plots
+      number_of_sheets: number of sheets
+      per_remaining_value: per remaining value
+      remaining_value: remaining value
+      road_limit: road limit
+      street_id: street id
+      time_building: time building
+      type: type
+      ward_id: ward id
+    land_coordinates:
+      coordinates: coordinates
+      coordinates_x: coordinates x
+      coordinates_y: coordinates y
+  rules:
+    confirm: '{field} must be checked'
+    expiry_date_greater_than_current_date: expiration date must be greater than current date
+    issue_date_must_less_than_current_date: release date must be less than current date
+    matches: '{field} is not in the correct format'
+    max: '{field} must be less than {max}'
+    min: '{field} must be greater than {min}'
+    required: '{field} is required'
+    type_error: 'required {field} is {type}'
+    field_confirmation: '{field} must be equal to {confirmation_field}'
+  type:
+    array: array
+    boolean: boolean
+    number: number
+    object: object
+    string: string

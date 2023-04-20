@@ -1,0 +1,127 @@
+validation:
+  fields:
+    auth:
+      login:
+        password: mật khẩu
+        user_name: tên đăng nhập
+      register:
+        password: mật khẩu
+        password_confirmation: xác nhận mật khẩu
+        user_name: số điện thoại
+      profile:
+        address: Địa chỉ
+        avatar: ảnh đại diện
+        customer_type: loại khách hàng
+        date_of_birth: Ngày sinh
+        email: email
+        fullName: họ và tên
+        gender: giới tính
+        identification_card: số CCCD / CMND
+        phone: số điện thoại
+        work_at: Làm việc ở
+      deposit:
+        duyet_ky_gui: duyệt ký gửi
+        chieu_dai: chiều dài
+        chieu_rong: chiều rộng
+        city_id: id thành phố
+        customer_id: id khách hàng
+        dien_tich_dat: diện tích đất
+        dien_tich_su_dung: diện tích sử dụng
+        district_id: id quận
+        do_sau_hem: độ sâu hẻm
+        gia_ban: giá bán
+        huong_bds: Hướng bds
+        ky_gui: ký gửi
+        ky_gui_dia_chi: ký gửi địa chỉ
+        loai_chu_quyen: loại chủ quyền
+        loai_hinh_bds: loại hình bds
+        loai_mua_ban_bds: loại mua bán bds
+        ma_phuong_xa: mã phường xã
+        ma_quan_huyen: mã quận huyện
+        so_lau: số lầu
+        so_phong_ngu: số phòng ngủ
+        so_phong_tam: số phòng tắm
+        so_thua: số thửa
+        so_to: số tờ
+        trang_thai: trạng thái
+        ward_id: mã phường
+        tien_ich: tiện ích
+        tien_ich_khac: tiện ích khác
+        hinh_anh: hình ảnh
+        mo_ta_tong_quan: mô tả tổng quan
+        mo_ta_vi_tri: mô tả vị trí
+        tieu_de: tiêu đề
+      feedback:
+        des: mô tả
+        full_name: họ và tên
+        is_read: đã đọc
+        is_reply: đã trả lời
+        phone_number: số điện thoại
+        adviseId: id
+      forgot_password:
+        user_name: tên người dùng
+        new_password: mật khẩu mới
+        new_password_confirmation: nhập lại mật khẩu
+        otp: otp
+        old_password: mật khẩu cũ
+    dialog:
+      request_land:
+        gia_bds_from: giá bds đến
+        gia_bds_to: giá bds từ
+        loai_hinh_bds: loại hình bds
+        loai_yc_bds: loại yêu cầu bds
+        ma_quan_huyen: mã quận huyện
+        nguoi_phu_trach: người phụ trách
+        nguoi_phu_trach_info: thông tin người phụ trách
+        note: ghi chú
+        phone: số điện thoại
+        ten_khach_hang: tên khách hàng
+        trang_thai: trạng thái
+    land_valuation:
+      alley_width: alley width
+      area_construction_floor: area construction floor
+      area_legal: area legal
+      area_legal_length: area legal length
+      area_legal_width: area legal width
+      area_not_legal: area not legal
+      area_not_legal_length: area not legal length
+      area_not_legal_width: area not legal width
+      city_id: mã thành phố
+      contact_email: contact email
+      contact_name: contact name
+      contact_phone: contact phone
+      distance: distance
+      distance_to_street: distance to street
+      district_id: mã quận huyện
+      floors_count: floors count
+      house_number: house number
+      location: location
+      number_of_land_plots: số thửa
+      number_of_sheets: số tờ
+      per_remaining_value: per remaining value
+      remaining_value: remaining value
+      road_limit: road limit
+      street_id: street id
+      time_building: time building
+      type: type
+      ward_id: mã phường xã
+    land_coordinates:
+      coordinates: tạo độ
+      coordinates_x: toạ độ x
+      coordinates_y: toạ độ y
+  rules:
+    confirm: vui lòng chọn xác nhận {field}
+    expiry_date_greater_than_current_date: Ngày hết hạn phải lớn hơn ngày hiện tại
+    issue_date_must_less_than_current_date: ngày cấp phải nhỏ hơn ngày hiện tại
+    matches: '{field} chưa đúng định dạng'
+    max: '{field} phải bé hơn {max}'
+    min: '{field} phải lớn hơn {min}'
+    required: '{field} là bắt buộc'
+    type_error: '{field} bắt buộc là {type}'
+    field_confirmation: '{field} phải giống với {confirmation_field}'
+  type:
+    array: mảng
+    boolean: boolean
+    number: số
+    object: object
+    string: chuỗi

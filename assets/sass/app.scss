@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+// vars
+@import 'variables';
+
+// animations
+@import 'animations/transitions';
+
+// ckeditor
+@import 'ckeditor';
+
+// prevent pull to refresh
+@import 'prevent_pull_to_refresh';
+
+// components
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: theme('colors.gray.100');
+  border-left: 1px solid theme('colors.gray.200');
+}
+::-webkit-scrollbar-thumb {
+  border: 3px solid theme('colors.gray.100');
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: theme('colors.secondary.400');
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: theme('colors.secondary.700');
+}
+html.dark {
+  ::-webkit-scrollbar-track {
+    background: theme('colors.slate.800');
+    border-left: 1px solid theme('colors.slate.700');
+  }
+  ::-webkit-scrollbar-thumb {
+    border-color: theme('colors.slate.800');
+    background-color: theme('colors.slate.500');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.slate.400');
+  }
+}
+
+html {
+  overflow-y: auto !important;
+  font-size: 14px;
+  font-weight: 400;
+
+  .Vue-Toastification__toast {
+    padding: 0.75rem 1rem;
+    align-items: center;
+
+    &.Vue-Toastification__toast--default {
+      background-color: theme('colors.primary.DEFAULT');
+      color: theme('colors.white');
+    }
+    &.Vue-Toastification__toast--info {
+      background-color: theme('colors.info.DEFAULT');
+      color: theme('colors.white');
+    }
+    &.Vue-Toastification__toast--success {
+      background-color: theme('colors.success.DEFAULT');
+      color: theme('colors.white');
+    }
+    &.Vue-Toastification__toast--error {
+      background-color: theme('colors.error.DEFAULT');
+      color: theme('colors.white');
+    }
+    &.Vue-Toastification__toast--warning {
+      background-color: theme('colors.warning.DEFAULT');
+      color: theme('colors.white');
+    }
+
+    .Vue-Toastification__toast-body {
+      font-size: inherit;
+    }
+
+    .Vue-Toastification__close-button {
+      font-size: 1.5rem;
+    }
+  }
+
+  .v-application {
+    color: inherit;
+    background: inherit;
+  }
+
+  .v-field__outline__notch {
+    border-bottom: 0px;
+  }
+
+  .v-btn {
+    text-transform: unset;
+  }
+
+  &:not(.dark) {
+    .v-divider {
+      --v-border-opacity: 1;
+    }
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .v-field {
+    .v-field__outline {
+      .v-field__outline__start {
+        border-top-left-radius: theme('borderRadius.lg');
+        border-bottom-left-radius: theme('borderRadius.lg');
+      }
+      .v-field__outline__end {
+        border-top-right-radius: theme('borderRadius.lg');
+        border-bottom-right-radius: theme('borderRadius.lg');
+      }
+    }
+
+    .empty-inner-slots-space & {
+      .v-field__append-inner,
+      .v-field__prepend-inner {
+        padding-top: unset !important;
+      }
+    }
+  }
+
+  .v-input {
+    .v-input__control {
+      .v-field {
+        font-size: inherit;
+      }
+
+      .v-field:not(.v-field--active):not(.v-field--error),
+      .v-field:not(.v-field--focused):not(.v-field--error) {
+        .v-field__outline {
+          .v-field__outline__start,
+          .v-field__outline__end,
+          .v-field__outline__notch::after,
+          .v-field__outline__notch::before {
+            border-color: theme('colors.gray.400');
+          }
+        }
+      }
+    }
+  }
+
+  .leaflet-bottom.leaflet-right,
+  .leaflet-bottom.leaflet-left {
+    margin-bottom: 4rem;
+    @screen lg {
+      margin-bottom: unset;
+    }
+  }
+
+  .breadcrumbs-no-space-x {
+    & {
+      padding-left: 0;
+      padding-right: 0;
+      flex-wrap: wrap;
+    }
+    > *:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .v-expansion-panels,
+  .swiper.swiper-initialized,
+  .swiper.swiper-initialized > .swiper-wrapper {
+    z-index: unset;
+  }
+
+  input {
+    display: block !important;
+  }
+}

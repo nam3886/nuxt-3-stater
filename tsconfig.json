@@ -1,0 +1,26 @@
+{
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": [
+      "unplugin-vue-define-options/macros-global",
+      "unplugin-vue-macros/macros-global",
+      "nuxt-windicss",
+      "@vueuse/nuxt",
+      "@intlify/nuxt3",
+      "@pinia/nuxt",
+      "unplugin-icons/types/vue",
+      "vite/client"
+    ]
+  },
+  "vueCompilerOptions": {
+    "target": 3,
+    "experimentalRfc436": true,
+    "jsxTemplates": true,
+    "plugins": ["@vue-macros/volar/define-model", "@vue-macros/volar/short-vmodel"]
+  }
+}
